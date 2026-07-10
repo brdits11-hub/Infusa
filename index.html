@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infusa — Guia de Chás para a Sua Pausa de Bem-Estar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest: #12261D;
+    --forest-deep: #0B1912;
+    --sage: #9CB89B;
+    --gold: #D4A657;
+    --cream: #F2EEE2;
+    --ink: #1A1A16;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--forest-deep);
+    color: var(--cream);
+    font-family:'Work Sans', sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; line-height:1.05; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color: var(--gold);
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 24px;
+    background:rgba(11,25,18,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(212,166,87,0.15);
+  }
+  .logo{font-family:'Fraunces', serif; font-size:22px; font-weight:600; letter-spacing:0.01em;}
+  .logo em{font-style:italic; color:var(--gold);}
+  .nav-cta{
+    background:var(--gold); color:var(--forest-deep);
+    padding:10px 20px; border-radius:100px; font-size:14px; font-weight:600;
+    transition:transform .25s ease;
+  }
+  .nav-cta:hover{transform:scale(1.05);}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex; align-items:center;
+    perspective:1200px;
+    overflow:hidden;
+    padding-top:40px;
+  }
+  .hero-bg{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 60% 50% at 75% 20%, rgba(212,166,87,0.16), transparent 60%),
+      radial-gradient(ellipse 50% 60% at 10% 80%, rgba(156,184,155,0.14), transparent 60%),
+      var(--forest-deep);
+    z-index:0;
+  }
+  .leaf{
+    position:absolute;
+    width:46px; height:46px;
+    background: linear-gradient(135deg, var(--sage), #5f7d5e);
+    border-radius: 0% 60% 0% 60%;
+    opacity:0.5;
+    transform-style:preserve-3d;
+    animation: float 9s ease-in-out infinite;
+    filter: drop-shadow(0 10px 14px rgba(0,0,0,0.35));
+  }
+  .leaf:nth-child(1){ top:12%; left:8%; width:34px; height:34px; animation-duration:8s; animation-delay:0s;}
+  .leaf:nth-child(2){ top:65%; left:14%; animation-duration:11s; animation-delay:1.5s;}
+  .leaf:nth-child(3){ top:22%; left:88%; width:30px;height:30px; animation-duration:7.5s; animation-delay:0.8s;}
+  .leaf:nth-child(4){ top:75%; left:80%; animation-duration:10s; animation-delay:2.2s;}
+  .leaf:nth-child(5){ top:45%; left:50%; width:24px;height:24px; opacity:0.3; animation-duration:12s; animation-delay:3s;}
+  @keyframes float{
+    0%,100%{ transform: translateY(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    25%{ transform: translateY(-22px) translateX(10px) rotateX(20deg) rotateY(40deg) rotateZ(15deg); }
+    50%{ transform: translateY(6px) translateX(-14px) rotateX(-10deg) rotateY(90deg) rotateZ(-10deg); }
+    75%{ transform: translateY(-14px) translateX(6px) rotateX(15deg) rotateY(150deg) rotateZ(8deg); }
+  }
+
+  .hero-inner{
+    position:relative; z-index:2;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;
+    width:100%;
+  }
+  .hero h1{
+    font-size:56px; letter-spacing:-0.01em;
+    margin:18px 0 20px;
+  }
+  .hero h1 i{ color:var(--sage); font-style:italic; }
+  .hero p.lead{
+    font-size:18px; line-height:1.6; color:rgba(242,238,226,0.8); max-width:460px; margin-bottom:32px;
+  }
+  .cta-row{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .btn-primary{
+    background: var(--gold);
+    color: var(--forest-deep);
+    font-weight:600; font-size:16px;
+    padding:16px 30px; border-radius:100px;
+    display:inline-flex; align-items:center; gap:10px;
+    box-shadow: 0 10px 30px -8px rgba(212,166,87,0.5);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-3px); box-shadow:0 16px 34px -8px rgba(212,166,87,0.65); }
+  .price-tag{ font-family:'IBM Plex Mono', monospace; font-size:13px; color:rgba(242,238,226,0.6); }
+  .price-tag b{ color:var(--cream); font-size:16px; }
+
+  /* 3D CUP CARD */
+  .cup-stage{
+    perspective:1000px;
+    display:flex; justify-content:center; align-items:center;
+  }
+  .cup-card{
+    width:280px; height:340px;
+    position:relative;
+    transform-style:preserve-3d;
+    animation: tilt 7s ease-in-out infinite;
+  }
+  @keyframes tilt{
+    0%,100%{ transform: rotateY(-8deg) rotateX(4deg); }
+    50%{ transform: rotateY(8deg) rotateX(-2deg); }
+  }
+  .cup-face{
+    position:absolute; inset:0;
+    background: linear-gradient(160deg, #1C3327, #0F2018);
+    border:1px solid rgba(212,166,87,0.25);
+    border-radius:20px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+  .steam{
+    position:absolute; bottom:56%; width:6px; height:60px;
+    background: linear-gradient(to top, rgba(242,238,226,0.5), transparent);
+    border-radius:10px;
+    filter: blur(3px);
+    animation: rise 4s ease-in-out infinite;
+  }
+  .steam:nth-child(1){ left:44%; animation-delay:0s; }
+  .steam:nth-child(2){ left:52%; animation-delay:1.3s; }
+  .steam:nth-child(3){ left:48%; animation-delay:2.6s; }
+  @keyframes rise{
+    0%{ transform: translateY(0) scaleY(1); opacity:0; }
+    30%{ opacity:0.7; }
+    100%{ transform: translateY(-70px) scaleY(1.4); opacity:0; }
+  }
+  .cup-icon{
+    width:90px; height:64px;
+    background: var(--gold);
+    border-radius: 6px 6px 30px 30px;
+    position:relative;
+    margin-top:60px;
+  }
+  .cup-icon::after{
+    content:'';
+    position:absolute; right:-26px; top:8px;
+    width:26px; height:26px;
+    border:8px solid var(--gold);
+    border-radius:50%;
+    border-left-color:transparent;
+  }
+  .cup-label{ margin-top:24px; font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.12em; color:var(--sage); text-transform:uppercase;}
+
+  /* SECTION SHARED */
+  section{ padding:110px 0; position:relative; }
+  .section-head{ max-width:600px; margin-bottom:56px; }
+  .section-head h2{ font-size:38px; margin-top:14px; }
+  .section-head p{ color:rgba(242,238,226,0.7); font-size:17px; margin-top:16px; line-height:1.6;}
+
+  /* PAIN POINTS */
+  .pain-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .pain-card{
+    background:rgba(242,238,226,0.03);
+    border:1px solid rgba(212,166,87,0.15);
+    border-radius:16px; padding:32px 26px;
+    transition:transform .3s ease, border-color .3s ease;
+  }
+  .pain-card:hover{ transform:translateY(-6px); border-color:rgba(212,166,87,0.5); }
+  .pain-card .mark{ font-family:'IBM Plex Mono', monospace; color:var(--gold); font-size:13px; }
+  .pain-card h3{ font-size:20px; margin:14px 0 10px; font-weight:600;}
+  .pain-card p{ color:rgba(242,238,226,0.65); font-size:15px; line-height:1.55; }
+
+  /* WHAT'S INSIDE */
+  .inside{ background: var(--forest); border-radius:28px; padding:64px 56px; }
+  .inside-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px 56px; }
+  .inside-item{ display:flex; gap:16px; align-items:flex-start; }
+  .inside-num{ font-family:'IBM Plex Mono', monospace; color:var(--gold); font-size:14px; padding-top:4px; }
+  .inside-item h4{ font-family:'Fraunces', serif; font-size:19px; font-weight:600; margin-bottom:6px; }
+  .inside-item p{ color:rgba(242,238,226,0.65); font-size:14.5px; line-height:1.55; }
+
+  /* TESTIMONIALS */
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .testi-card{
+    background:rgba(242,238,226,0.03); border:1px solid rgba(156,184,155,0.2);
+    border-radius:16px; padding:28px;
+  }
+  .testi-card p{ font-size:15px; line-height:1.6; color:rgba(242,238,226,0.85); font-style:italic; }
+  .testi-name{ margin-top:18px; font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--sage); }
+
+  /* PRICING */
+  .pricing-box{
+    background: linear-gradient(150deg, #1C3327, #0B1912);
+    border:1px solid rgba(212,166,87,0.3);
+    border-radius:28px;
+    padding:64px; text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .pricing-box::before{
+    content:'';
+    position:absolute; top:-40%; right:-10%;
+    width:400px; height:400px;
+    background:radial-gradient(circle, rgba(212,166,87,0.18), transparent 70%);
+  }
+  .pricing-box h2{ font-size:34px; margin-bottom:14px; }
+  .pricing-box p{ color:rgba(242,238,226,0.7); max-width:480px; margin:0 auto 34px; }
+  .price-big{ font-family:'Fraunces', serif; font-size:52px; color:var(--gold); margin-bottom:6px; }
+  .price-old{ text-decoration:line-through; color:rgba(242,238,226,0.4); font-size:16px; margin-right:10px; }
+
+  /* FAQ */
+  .faq-item{ border-bottom:1px solid rgba(212,166,87,0.15); padding:24px 0; }
+  .faq-item h4{ font-size:17px; font-weight:600; margin-bottom:10px; font-family:'Work Sans',sans-serif;}
+  .faq-item p{ color:rgba(242,238,226,0.65); font-size:15px; line-height:1.6; display:none; }
+  .faq-item.open p{ display:block; }
+  .faq-item h4::after{ content:'+'; float:right; color:var(--gold); }
+  .faq-item.open h4::after{ content:'–'; }
+
+  footer{ padding:50px 24px; text-align:center; color:rgba(242,238,226,0.45); font-size:13px; line-height:1.7; border-top:1px solid rgba(212,166,87,0.1); }
+
+  @media(max-width:860px){
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero h1{ font-size:38px; }
+    .pain-grid, .testi-grid{ grid-template-columns:1fr; }
+    .inside-grid{ grid-template-columns:1fr; }
+    .inside{ padding:40px 24px; }
+    .pricing-box{ padding:40px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Infusa <em>·</em></div>
+  <a href="#oferta" class="nav-cta">Quero o guia</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="leaf"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow">Guia digital · bem-estar natural</span>
+      <h1>Uma pausa de chá pra <i>desacelerar</i> o seu dia.</h1>
+      <p class="lead">Infusa reúne combinações tradicionais de chás e ervas, com preparo passo a passo, pensadas pra quem busca relaxar, dormir melhor e criar uma pausa de verdade na rotina.</p>
+      <div class="cta-row">
+        <a href="#oferta" class="btn-primary">Quero meu guia agora →</a>
+        <span class="price-tag">a partir de <b>R$ 27,90</b></span>
+      </div>
+    </div>
+    <div class="cup-stage">
+      <div class="cup-card">
+        <div class="cup-face">
+          <div class="steam"></div><div class="steam"></div><div class="steam"></div>
+          <div class="cup-icon"></div>
+          <div class="cup-label">Guia Infusa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <span class="eyebrow">O dia a dia pesa</span>
+    <h2>Se alguma dessas cenas é familiar...</h2>
+  </div>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <span class="mark">01</span>
+      <h3>A mente não desliga</h3>
+      <p>Você deita cansado mas a cabeça continua girando, pensando em tudo que ficou pra amanhã.</p>
+    </div>
+    <div class="pain-card">
+      <span class="mark">02</span>
+      <h3>Rotina sem pausa</h3>
+      <p>Do trabalho pra casa, de uma tela pra outra — sem um momento só seu no meio disso tudo.</p>
+    </div>
+    <div class="pain-card">
+      <span class="mark">03</span>
+      <h3>Não sabe por onde começar</h3>
+      <p>Já ouviu falar de chás calmantes, mas nunca soube qual erva, quando tomar ou como preparar certo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="inside">
+    <div class="section-head" style="margin-bottom:44px;">
+      <span class="eyebrow">O que tem dentro</span>
+      <h2>Um guia direto ao ponto, sem enrolação</h2>
+    </div>
+    <div class="inside-grid">
+      <div class="inside-item">
+        <span class="inside-num">01</span>
+        <div><h4>12 combinações de chás</h4><p>Organizadas por momento do dia e objetivo: relaxar, dormir, focar, aquecer a rotina.</p></div>
+      </div>
+      <div class="inside-item">
+        <span class="inside-num">02</span>
+        <div><h4>Modo de preparo ilustrado</h4><p>Tempo de infusão, temperatura e quantidade certa pra cada erva, sem complicação.</p></div>
+      </div>
+      <div class="inside-item">
+        <span class="inside-num">03</span>
+        <div><h4>Pausa de 10 minutos</h4><p>Um passo a passo simples pra transformar o preparo do chá numa pausa de verdade.</p></div>
+      </div>
+      <div class="inside-item">
+        <span class="inside-num">04</span>
+        <div><h4>Lista de compras pronta</h4><p>Saiba exatamente o que comprar e onde encontrar cada erva com facilidade.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <span class="eyebrow">Quem já experimentou</span>
+    <h2>Pausas que viraram hábito</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <p>"Comecei a separar 10 minutos à noite só pro meu chá. Parece pouco, mas mudou meu fim de dia."</p>
+      <div class="testi-name">— Camila R.</div>
+    </div>
+    <div class="testi-card">
+      <p>"Eu não sabia nem por onde começar com ervas. O guia deixou tudo simples de seguir."</p>
+      <div class="testi-name">— Diego M.</div>
+    </div>
+    <div class="testi-card">
+      <p>"Virou parte da minha rotina de fim de semana. Gosto até do momento de preparar."</p>
+      <div class="testi-name">— Larissa F.</div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="oferta">
+  <div class="pricing-box">
+    <span class="eyebrow">Oferta de lançamento</span>
+    <h2>Comece sua pausa hoje</h2>
+    <p>Acesso imediato em PDF, direto no seu e-mail. Leia no celular, tablet ou computador, no seu tempo.</p>
+    <div class="price-big"><span class="price-old">R$ 47</span>R$ 27,90</div>
+    <p style="margin-bottom:30px; font-size:13px;">Pagamento único · sem assinatura</p>
+    <a href="#" class="btn-primary" id="checkout-link">Quero meu guia agora →</a>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <span class="eyebrow">Dúvidas comuns</span>
+    <h2>Perguntas frequentes</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <h4>O guia substitui uma recomendação médica?</h4>
+      <p>Não. O Infusa é um guia de bem-estar e uso tradicional de ervas, não um tratamento médico. Para qualquer condição de saúde, consulte sempre um profissional.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Como recebo o material?</h4>
+      <p>Assim que a compra é confirmada, você recebe o PDF por e-mail em poucos minutos, com acesso imediato.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Preciso de experiência com chás?</h4>
+      <p>Não. O guia foi pensado pra quem está começando do zero, com passo a passo simples.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Tem garantia?</h4>
+      <p>Sim, garantia de 1 ano. Se não gostar, é só pedir reembolso.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Infusa é um material educativo sobre chás e bem-estar. Não substitui diagnóstico, orientação ou tratamento médico. Consulte sempre um profissional de saúde.</p>
+  <p style="margin-top:8px;">© 2026 Infusa. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('h4').addEventListener('click', ()=>{
+      item.classList.toggle('open');
+    });
+  });
+</script>
+
+</body>
+</html>
